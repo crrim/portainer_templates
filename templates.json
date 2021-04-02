@@ -4160,5 +4160,19 @@
         }
       ]
     }
+    {
+    "type": 1,
+    "platform": "linux",
+    "title": "Metasploit - Nightly",
+    "description": "Official bare Metasploit Alpine build. Includes beta features from dev branch.",
+    "name": "red_msf-dev",
+    "interactive": true,
+    "logo": "https://yusufanilakduygu.files.wordpress.com/2016/08/capture1.jpg",
+    "image": "metasploitframework/metasploit-framework",
+    "restart_policy": "unless-stopped",
+    "categories": ["offensive", "bare"],
+    "ports": [
+      "4444:4444/tcp"
+      ]
+    },
   ]
-  
