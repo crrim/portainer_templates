@@ -74,426 +74,426 @@
       "4444:4444/tcp"
       ]
     },
-  {
-    "type": 1,
-    "platform": "linux",
-    "title": "Metasploit - Stable + Postgresql",
-    "description": "Debian Metasploit build with Postgres and additional helper scripts",
-    "name": "red_msf-postgresql",
-    "interactive": true,
-    "logo": "https://i.imgur.com/OE5fgz7.png",
-    "image": "phocean/msf",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "database", "stack"],
-    "labels": [
-    { "name": "traefik.frontend.rule", "value": "PathPrefixStrip:/msf" },
-    { "name": "traefik.port", "value": "4444" }
+    {
+      "type": 1,
+      "platform": "linux",
+      "title": "Metasploit - Stable + Postgresql",
+      "description": "Debian Metasploit build with Postgres and additional helper scripts",
+      "name": "red_msf-postgresql",
+      "interactive": true,
+      "logo": "https://i.imgur.com/OE5fgz7.png",
+      "image": "phocean/msf",
+      "restart_policy": "unless-stopped",
+      "categories": ["offensive", "database", "stack"],
+      "labels": [
+      { "name": "traefik.frontend.rule", "value": "PathPrefixStrip:/msf" },
+      { "name": "traefik.port", "value": "4444" }
+        ],
+      "ports": [
+        "4444:4444/tcp"
+        ]
+    },
+    {  
+      "type": 1,
+      "title": "Empire",
+      "platform": "linux",
+      "description": "Pure Python & PowerShell post-exploitation",
+      "interactive": true,
+      "name": "red_empire",
+      "logo": "https://i.imgur.com/XvtOqFp.png",
+      "note": "Port 5555 opened for reverse callbacks",
+      "image": "empireproject/empire",
+      "restart_policy": "unless-stopped",
+      "categories": ["offensive"],
+      "ports": [
+        "5555:5555/tcp"      
+        ],
+      "labels": [
+      { "name": "traefik.frontend.rule", "value": "PathPrefixStrip:/empire" },
+      { "name": "traefik.port", "value": "5555" }
+        ]
+      
+    },
+    {
+      "type": 1,
+      "title": "Sn1per",
+      "platform": "linux",
+      "description": "Automated pentest framework for offensive security experts",
+      "name": "red_sn1per",
+      "interactive": true,
+      "logo": "https://i.imgur.com/X1fCmIv.jpg",
+      "image": "menzo/sn1per-docker",
+      "categories": ["offensive", "stack"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "type": 1,
+      "title": "Metasploithelper",
+      "platform": "linux",
+      "description": "MetasploitHelper is meant to assist penetration testers in network penetration tests. Comes with everything installed",
+      "name": "red_metasploithelper",
+      "interactive": true,
+      "logo": "https://i.imgur.com/2GIRvgI.png",
+      "image": "milo2012/metasploithelper",
+      "categories": ["offensive", "stack", "util"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "type": 1,
+      "title": "Pentest-tools",
+      "platform": "linux",
+      "description": "Ubuntu build with: searchsploit, sqlmap, nmap, nikto, dnsutils, sn1per, knock, sqliv, pasko, uniscan, wpscan, ncrack, wfuzz, sublist3r, massdns",
+      "name": "red_pentest-tools",
+      "interactive": true,
+      "logo": "https://i.imgur.com/oySfUtD.png",
+      "image": "szalek/pentest-tools",
+      "categories": ["offensive", "stack"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "type": 1,
+      "platform": "linux",
+      "title": "Kali - Bare",
+      "name": "red_kali-bare",
+      "description": "Official Kali container. Install desired metapackages",
+      "note": "Packages can be installed using Kali Metapackages. Use either docker attach <container name> by CLI (best) or the web terminal. Port 4444 is open by default for reverse callback payloads.",
+      "interactive": true,
+      "logo": "https://i.imgur.com/tmLEP0b.jpg",
+      "image": "kalilinux/kali-linux-docker",
+      "restart_policy": "unless-stopped",
+      "categories": ["offensive", "bare"],
+      "ports": [
+        "4444:4444/tcp"
+        ]
+    },
+    {
+      "type": 1,  
+      "platform": "linux",
+      "title": "Kali - Full",
+      "name": "red_kali-full",
+      "description": "Non-Official Kali container with kali-linux-full metapackage installed, built every night",
+      "interactive": true,
+      "logo": "https://i.imgur.com/kcOdowg.jpg",
+      "image": "booyaabes/kali-linux-full",
+      "restart_policy": "unless-stopped",
+      "categories": ["offensive", "stack"],
+      "ports": [
+        "4444:4444/tcp"
+        ]
+    },
+    {   
+      "type": 1,
+      "title": "Tor Socks Proxy",
+      "platform": "linux",
+      "description": "The smallest (15 MB) docker image with Tor and Privoxy on Alpine Linux",
+      "name": "red_tor-socks",
+      "logo": "https://i.imgur.com/p3dEUKr.jpg",
+      "note": "curl --proxy tor-socks:8118 icanhazip.com <br>curl --socks5 tor-socks:9050 icanhazip.com",
+      "image": "rdsubhas/tor-privoxy-alpine",
+      "restart_policy": "unless-stopped",
+      "categories": ["utils", "privacy"],
+      "ports": [
+        "8118:8118/tcp",
+        "9050:9050/tcp"
+      ]
+    },
+    {   
+      "type": 1,
+      "title": "Multi Tor Socks Proxy",
+      "platform": "linux",
+      "description": "A multi TOR (x10) + privoxy socks proxy instances load-balancer ",
+      "name": "red_multi-tor-socks",
+      "logo": "https://i.imgur.com/p3dEUKr.jpg",
+      "note": "curl --socks5 multi-tor-socks:9050 icanhazip.com",
+      "image": "rdsubhas/tor-privoxy-alpine",
+      "restart_policy": "unless-stopped",
+      "categories": ["utils", "privacy"],
+      "ports": [
+        "9050:9050/tcp"
+      ]
+    },
+    {  
+      "type": 1,
+      "title": "GoPhish",
+      "platform": "linux",
+      "description": "Open-Source Phishing Toolkit",
+      "name": "red_gophish",
+      "logo": "https://i.imgur.com/l21Rn2v.png",
+      "note": "In your browser, head over to https://your-docker-machine-ip:3333. Don't forget the S in https. Default credentials: admin/gophish",
+      "image": "matteoggl/gophish",
+      "restart_policy": "unless-stopped",
+      "categories": ["offensive", "phishing"],
+      "ports": [
+        "3333:3333/tcp",
+        "8083:80/tcp"
+        ]    
+    },
+    {  
+      "type": 1,
+      "title": "gscript",
+      "platform": "linux",
+      "description": "Framework to rapidly implement custom droppers for all three major operating systems",
+      "interactive": true,
+      "name": "red_gscript",
+      "logo": "https://i.imgur.com/IoI2VqG.png",
+      "note": "Run gscript binary from the interactive shell. Don't forget to mount appropriate volumes.",
+      "image": "gen0cide/gscript:v1",
+      "restart_policy": "unless-stopped",
+      "categories": ["offensive", "evasion"],
+      "volumes": [{"container": "/root/share"}]
+    },
+    {
+      "type": 1,
+      "title": "Spiderfoot",
+      "platform": "linux",
+      "description": "SpiderFoot automates OSINT to find out everything possible about your target.",
+      "name": "red_spiderfoot",
+      "note": "In your browser, head over to https://your-docker-machine-ip:5001",
+      "interactive": true,
+      "logo": "https://i.imgur.com/4lffWWS.png",
+      "image": "combro2k/alpine-spiderfoot",
+      "restart_policy": "unless-stopped",
+      "categories": ["offensive", "osint"],
+      "ports": [
+        "5001:5001/tcp"
+      ]
+    },
+    {
+      "type": 1,
+      "title": "ZAP Proxy WebSwing",
+      "platform": "linux",
+      "description": "Official in-browser version of ZAP.",
+      "name": "red_zap-proxy",
+      "note": "Since it is hosted on the same LAN as the target containers, usage should be faster. It is also possible to use the exposed remote proxy with a local instance of ZAP. Point your browser to http://your-docker-machine-ip:8081/?anonym=true&app=ZAP once done. If not, you will be asked to authenticate to a null account.",
+      "interactive": true,
+      "command": "zap-webswing.sh",
+      "logo": "https://www.owasp.org/images/1/11/Zap128x128.png",
+      "image": "owasp/zap2docker-stable",
+      "restart_policy": "unless-stopped",
+      "categories": ["offensive", "webserver", "bare"],
+      "ports": [
+        "8081:8080/tcp",
+        "8090:8090/tcp"
+      ]
+    },
+    {  
+      "type": 1,
+      "title": "Ubuntu Web VNC",
+      "platform": "linux",
+      "description": "Docker container images with VNC and http NoVNC",
+      "name": "red_ubuntu-vnc",
+      "logo": "https://i.imgur.com/KfWzNDU.jpg",
+      "note": "Connect to :1 display with vncviewer. NoVNC: http://your-docker-machine-ip:6901/vnc.html, default password: vncpassword",
+      "image": "consol/ubuntu-xfce-vnc",
+      "restart_policy": "unless-stopped",
+      "categories": ["utils"],
+      "ports": [
+        "5901:5901/tcp",
+        "6901:6901/tcp"
+        ]    
+    },
+    {  
+      "type": 1,
+      "title": "Kali Web noVNC + LXDE",
+      "platform": "linux",
+      "description": "Kali Docker container with minimal LXDE",
+      "name": "red_kali-vnc",
+      "logo": "https://i.imgur.com/tmLEP0b.jpg",
+      "note": "From your web browser: http://your-docker-machine-ip:6080",
+      "image": "jgamblin/kalibrowser-lxde",
+      "restart_policy": "unless-stopped",
+      "categories": ["offensive", "bare", "utils"],
+      "ports": [
+        "6080:6080/tcp"
+        ]    
+    },
+    {
+      "type": 1,
+      "title": "Lockdoor Framework",
+      "platform": "linux",
+      "description": "Lockdoor Framework : A Penetration Testing framework with Cyber Security Resources",
+      "name": "red_lockdoor",
+      "interactive": true,
+      "logo": "https://i.imgur.com/B5uKiEv.png",
+      "image": "sofianehamlaoui/lockdoor",
+      "categories": ["offensive", "privacy"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "type": 1,
+      "title": "DVWA",
+      "platform": "linux",
+      "description": "Damn Vulnerable Web App (DVWA) is a PHP/MySQL web application that is damn vulnerable",
+      "name": "red_vuln-dvwa",
+      "logo": "https://linuxsecurityblog.files.wordpress.com/2016/01/dvwa.jpg",
+      "note": "Point your browser to http://your-docker-machine-ip:8082 to access it. To start using: Generate DB from the web interface, Login using admin/password. Select DVWA Security in the left menu, set your difficulty level.",
+      "image": "vulnerables/web-dvwa",
+      "restart_policy": "unless-stopped",
+      "categories": ["vulnerable", "webserver"],
+      "ports": [
+        "8082:80/tcp"
+      ]    
+    },
+    {   
+      "type": 1,
+      "title": "JuiceShop",
+      "platform": "linux",
+      "description": "OWASP Juice Shop is an intentionally insecure web application written entirely in JavaScript which encompasses the entire range of OWASP Top Ten and other severe security flaws.",
+      "name": "red_vuln-juiceshop",
+      "logo": "https://www.owasp.org/images/6/66/JuiceShop_Logo.png",
+      "note": "Point your browser to http://your-docker-machine-ip:8084 to access it.",
+      "image": "bkimminich/juice-shop",
+      "restart_policy": "unless-stopped",
+      "categories": ["vulnerable", "webserver"],
+      "ports": [
+        "8084:3000/tcp"
+      ]    
+    },
+    {   
+      "type": 1,
+      "title": "Vulnerable Wordpress",
+      "platform": "linux",
+      "description": "Vulnerable WordPress Installation",
+      "name": "red_vuln-wp",
+      "logo": "https://i.imgur.com/0DpXEE4.png",
+      "note": "Point your browser to http://your-docker-machine-ip:8085 to access it.",
+      "image": "wpscanteam/vulnerablewordpress",
+      "restart_policy": "unless-stopped",
+      "categories": ["vulnerable", "webserver"],
+      "ports": [
+        "8085:80/tcp",
+        "3306:3306/tcp"
+      ]    
+    },
+    {   
+      "type": 1,
+      "title": "Vulnerable Shellshock",
+      "platform": "linux",
+      "description": "Vulnerable Shellshock Installation - CVE-2014-6271",
+      "name": "red_vuln-shellshock",
+      "logo": "https://i.imgur.com/waYl54r.png",
+      "note": "Point your browser to http://your-docker-machine-ip:8086 to access it.",
+      "image": "hmlio/vaas-cve-2014-6271",
+      "restart_policy": "unless-stopped",
+      "categories": ["vulnerable", "webserver"],
+      "ports": [
+        "8086:80/tcp"
+      ]    
+    },
+  {   
+      "type": 1,
+      "title": "Vulnerable SambaCry",
+      "platform": "linux",
+      "description": "Vulnerable Samba Installation - CVE-2017-7494",
+      "name": "red_vuln-samba",
+      "logo": "https://media.ilsoftware.it/images/500x500/img_15843.jpg",
+      "note": "If you want to access, use the following credentials. User: sambacry Password: nosambanocry",
+      "image": "hmlio/vulnerables/cve-2017-7494",
+      "restart_policy": "unless-stopped",
+      "categories": ["vulnerable", "smb"],
+      "ports": [
+        "445:445/tcp",
+        "137-139:137-139/tcp",
+        "6699:6699/tcp"
+      ]    
+    },
+    {   
+      "type": 1,
+      "title": "OWASP Mutillidae II",
+      "platform": "linux",
+      "description": "Docker container for OWASP Mutillidae II Web Pen-Test Practice Application",
+      "name": "red_vuln-mutillidae",
+      "logo": "https://i.imgur.com/SFDsPDQ.jpg",
+      "note": "Point your browser to http://your-docker-machine-ip:8087 to access it.",
+      "image": "citizenstig/nowasp",
+      "restart_policy": "unless-stopped",
+      "categories": ["vulnerable", "smb"],
+      "ports": [
+        "8087:80/tcp",
+        "3306:3306/tcp"
       ],
-    "ports": [
-      "4444:4444/tcp"
+      "env": [
+        {
+          "name": "MYSQL_PASS",
+          "label": "Database root password",
+          "description": "Password used by the MySQL root user.",
+          "default": "Chang3ME!",
+          "preset": false
+        }
       ]
-  },
-  {  
-    "type": 1,
-    "title": "Empire",
-    "platform": "linux",
-    "description": "Pure Python & PowerShell post-exploitation",
-    "interactive": true,
-    "name": "red_empire",
-    "logo": "https://i.imgur.com/XvtOqFp.png",
-    "note": "Port 5555 opened for reverse callbacks",
-    "image": "empireproject/empire",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive"],
-    "ports": [
-      "5555:5555/tcp"      
-      ],
-    "labels": [
-    { "name": "traefik.frontend.rule", "value": "PathPrefixStrip:/empire" },
-    { "name": "traefik.port", "value": "5555" }
-      ]
-    
-  },
+    },
+    {   
+      "type": 1,
+      "title": "Network Utilities",
+      "platform": "linux",
+      "description": "A lightweight docker container with a set of networking tools<br>Use /bin/sh",
+      "interactive": true,
+      "name": "red_netutils",
+      "logo": "https://i.imgur.com/XXaSxlw.png",
+      "note": "This is designed to be an interactive debuigging container",
+      "image": "flungo/netutils",
+      "restart_policy": "unless-stopped",
+      "categories": ["utils", "privacy"]
+    },
   {
-    "type": 1,
-    "title": "Sn1per",
-    "platform": "linux",
-    "description": "Automated pentest framework for offensive security experts",
-    "name": "red_sn1per",
-    "interactive": true,
-    "logo": "https://i.imgur.com/X1fCmIv.jpg",
-    "image": "menzo/sn1per-docker",
-    "categories": ["offensive", "stack"],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "title": "Metasploithelper",
-    "platform": "linux",
-    "description": "MetasploitHelper is meant to assist penetration testers in network penetration tests. Comes with everything installed",
-    "name": "red_metasploithelper",
-    "interactive": true,
-    "logo": "https://i.imgur.com/2GIRvgI.png",
-    "image": "milo2012/metasploithelper",
-    "categories": ["offensive", "stack", "util"],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "title": "Pentest-tools",
-    "platform": "linux",
-    "description": "Ubuntu build with: searchsploit, sqlmap, nmap, nikto, dnsutils, sn1per, knock, sqliv, pasko, uniscan, wpscan, ncrack, wfuzz, sublist3r, massdns",
-    "name": "red_pentest-tools",
-    "interactive": true,
-    "logo": "https://i.imgur.com/oySfUtD.png",
-    "image": "szalek/pentest-tools",
-    "categories": ["offensive", "stack"],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "platform": "linux",
-    "title": "Kali - Bare",
-    "name": "red_kali-bare",
-    "description": "Official Kali container. Install desired metapackages",
-    "note": "Packages can be installed using Kali Metapackages. Use either docker attach <container name> by CLI (best) or the web terminal. Port 4444 is open by default for reverse callback payloads.",
-    "interactive": true,
-    "logo": "https://i.imgur.com/tmLEP0b.jpg",
-    "image": "kalilinux/kali-linux-docker",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "bare"],
-    "ports": [
-      "4444:4444/tcp"
+      "type": 1,
+      "title": "SoftEtherVPN",
+      "name": "red_softethervpn",
+      "description": "A simple SoftEther VPN server",
+      "categories": ["vpn", "utils", "privacy"],
+      "platform": "linux",
+      "logo": "https://i.imgur.com/zzhyywo.jpg",
+      "image": "siomiz/softethervpn",
+      "privileged": true,
+      "ports": [
+        "500:500/udp",
+        "4500:4500/udp",
+        "1701:1701/tcp",
+        "1194:1194/udp",
+        "5555:5555/tcp"
       ]
   },
   {
-    "type": 1,  
-    "platform": "linux",
-    "title": "Kali - Full",
-    "name": "red_kali-full",
-    "description": "Non-Official Kali container with kali-linux-full metapackage installed, built every night",
-    "interactive": true,
-    "logo": "https://i.imgur.com/kcOdowg.jpg",
-    "image": "booyaabes/kali-linux-full",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "stack"],
-    "ports": [
-      "4444:4444/tcp"
+      "type": 1,
+      "title": "Cowrie Honeypot",
+      "name": "red_cowrie",
+      "interactive": true,
+      "description": "SSH Honeypot that logs authentication attempts and interactions",
+      "categories": ["honeypot", "deception"],
+      "platform": "linux",
+      "logo": "https://i.imgur.com/GaYgbXo.png",
+      "image": "cowrie/cowrie",
+      "ports": [
+        "2222:2222/tcp"
       ]
   },
-  {   
-    "type": 1,
-    "title": "Tor Socks Proxy",
-    "platform": "linux",
-    "description": "The smallest (15 MB) docker image with Tor and Privoxy on Alpine Linux",
-    "name": "red_tor-socks",
-    "logo": "https://i.imgur.com/p3dEUKr.jpg",
-    "note": "curl --proxy tor-socks:8118 icanhazip.com <br>curl --socks5 tor-socks:9050 icanhazip.com",
-    "image": "rdsubhas/tor-privoxy-alpine",
-    "restart_policy": "unless-stopped",
-    "categories": ["utils", "privacy"],
-    "ports": [
-      "8118:8118/tcp",
-      "9050:9050/tcp"
-    ]
-  },
-  {   
-    "type": 1,
-    "title": "Multi Tor Socks Proxy",
-    "platform": "linux",
-    "description": "A multi TOR (x10) + privoxy socks proxy instances load-balancer ",
-    "name": "red_multi-tor-socks",
-    "logo": "https://i.imgur.com/p3dEUKr.jpg",
-    "note": "curl --socks5 multi-tor-socks:9050 icanhazip.com",
-    "image": "rdsubhas/tor-privoxy-alpine",
-    "restart_policy": "unless-stopped",
-    "categories": ["utils", "privacy"],
-    "ports": [
-      "9050:9050/tcp"
-    ]
-  },
-  {  
-    "type": 1,
-    "title": "GoPhish",
-    "platform": "linux",
-    "description": "Open-Source Phishing Toolkit",
-    "name": "red_gophish",
-    "logo": "https://i.imgur.com/l21Rn2v.png",
-    "note": "In your browser, head over to https://your-docker-machine-ip:3333. Don't forget the S in https. Default credentials: admin/gophish",
-    "image": "matteoggl/gophish",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "phishing"],
-    "ports": [
-      "3333:3333/tcp",
-      "8083:80/tcp"
-      ]    
-  },
-  {  
-    "type": 1,
-    "title": "gscript",
-    "platform": "linux",
-    "description": "Framework to rapidly implement custom droppers for all three major operating systems",
-    "interactive": true,
-    "name": "red_gscript",
-    "logo": "https://i.imgur.com/IoI2VqG.png",
-    "note": "Run gscript binary from the interactive shell. Don't forget to mount appropriate volumes.",
-    "image": "gen0cide/gscript:v1",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "evasion"],
-    "volumes": [{"container": "/root/share"}]
+  {
+      "type": 1,
+      "title": "Endlessh tarpit",
+      "name": "red_endlessh",
+      "description": "SSH tarpit that slowly sends an endless banner",
+      "categories": ["deception"],
+      "platform": "linux",
+      "logo": "https://i.imgur.com/lsGCqxD.png",
+      "image": "d3lta/endlessh-docker",
+      "ports": [
+        "2223:22/tcp"
+      ]
   },
   {
-    "type": 1,
-    "title": "Spiderfoot",
-    "platform": "linux",
-    "description": "SpiderFoot automates OSINT to find out everything possible about your target.",
-    "name": "red_spiderfoot",
-    "note": "In your browser, head over to https://your-docker-machine-ip:5001",
-    "interactive": true,
-    "logo": "https://i.imgur.com/4lffWWS.png",
-    "image": "combro2k/alpine-spiderfoot",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "osint"],
-    "ports": [
-      "5001:5001/tcp"
-    ]
+      "type": 1,
+      "title": "Beagle",
+      "name": "red_beagle",
+      "description": "Incident response and digital forensics tool which transforms data sources and logs into graphs. Supported data sources include FireEye HX Triages, Windows EVTX files, SysMon logs and Raw Windows memory images.",
+      "note": "Point your browser to http://your-docker-machine-ip:8000 to access it.",
+      "categories": ["utils", "dfir", "osint"],
+      "platform": "linux",
+      "logo": "https://i.imgur.com/QDBYkY1.jpg",
+      "image": "yampelo/beagle",
+      "ports": [
+        "8000:8000/tcp"
+      ]
   },
-  {
-    "type": 1,
-    "title": "ZAP Proxy WebSwing",
-    "platform": "linux",
-    "description": "Official in-browser version of ZAP.",
-    "name": "red_zap-proxy",
-    "note": "Since it is hosted on the same LAN as the target containers, usage should be faster. It is also possible to use the exposed remote proxy with a local instance of ZAP. Point your browser to http://your-docker-machine-ip:8081/?anonym=true&app=ZAP once done. If not, you will be asked to authenticate to a null account.",
-    "interactive": true,
-    "command": "zap-webswing.sh",
-    "logo": "https://www.owasp.org/images/1/11/Zap128x128.png",
-    "image": "owasp/zap2docker-stable",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "webserver", "bare"],
-    "ports": [
-      "8081:8080/tcp",
-      "8090:8090/tcp"
-    ]
-  },
-  {  
-    "type": 1,
-    "title": "Ubuntu Web VNC",
-    "platform": "linux",
-    "description": "Docker container images with VNC and http NoVNC",
-    "name": "red_ubuntu-vnc",
-    "logo": "https://i.imgur.com/KfWzNDU.jpg",
-    "note": "Connect to :1 display with vncviewer. NoVNC: http://your-docker-machine-ip:6901/vnc.html, default password: vncpassword",
-    "image": "consol/ubuntu-xfce-vnc",
-    "restart_policy": "unless-stopped",
-    "categories": ["utils"],
-    "ports": [
-      "5901:5901/tcp",
-      "6901:6901/tcp"
-      ]    
-  },
-  {  
-    "type": 1,
-    "title": "Kali Web noVNC + LXDE",
-    "platform": "linux",
-    "description": "Kali Docker container with minimal LXDE",
-    "name": "red_kali-vnc",
-    "logo": "https://i.imgur.com/tmLEP0b.jpg",
-    "note": "From your web browser: http://your-docker-machine-ip:6080",
-    "image": "jgamblin/kalibrowser-lxde",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "bare", "utils"],
-    "ports": [
-      "6080:6080/tcp"
-      ]    
-  },
-  {
-    "type": 1,
-    "title": "Lockdoor Framework",
-    "platform": "linux",
-    "description": "Lockdoor Framework : A Penetration Testing framework with Cyber Security Resources",
-    "name": "red_lockdoor",
-    "interactive": true,
-    "logo": "https://i.imgur.com/B5uKiEv.png",
-    "image": "sofianehamlaoui/lockdoor",
-    "categories": ["offensive", "privacy"],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "title": "DVWA",
-    "platform": "linux",
-    "description": "Damn Vulnerable Web App (DVWA) is a PHP/MySQL web application that is damn vulnerable",
-    "name": "red_vuln-dvwa",
-    "logo": "https://linuxsecurityblog.files.wordpress.com/2016/01/dvwa.jpg",
-    "note": "Point your browser to http://your-docker-machine-ip:8082 to access it. To start using: Generate DB from the web interface, Login using admin/password. Select DVWA Security in the left menu, set your difficulty level.",
-    "image": "vulnerables/web-dvwa",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "webserver"],
-    "ports": [
-      "8082:80/tcp"
-    ]    
-  },
-  {   
-    "type": 1,
-    "title": "JuiceShop",
-    "platform": "linux",
-    "description": "OWASP Juice Shop is an intentionally insecure web application written entirely in JavaScript which encompasses the entire range of OWASP Top Ten and other severe security flaws.",
-    "name": "red_vuln-juiceshop",
-    "logo": "https://www.owasp.org/images/6/66/JuiceShop_Logo.png",
-    "note": "Point your browser to http://your-docker-machine-ip:8084 to access it.",
-    "image": "bkimminich/juice-shop",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "webserver"],
-    "ports": [
-      "8084:3000/tcp"
-    ]    
-  },
-  {   
-    "type": 1,
-    "title": "Vulnerable Wordpress",
-    "platform": "linux",
-    "description": "Vulnerable WordPress Installation",
-    "name": "red_vuln-wp",
-    "logo": "https://i.imgur.com/0DpXEE4.png",
-    "note": "Point your browser to http://your-docker-machine-ip:8085 to access it.",
-    "image": "wpscanteam/vulnerablewordpress",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "webserver"],
-    "ports": [
-      "8085:80/tcp",
-      "3306:3306/tcp"
-    ]    
-  },
-  {   
-    "type": 1,
-    "title": "Vulnerable Shellshock",
-    "platform": "linux",
-    "description": "Vulnerable Shellshock Installation - CVE-2014-6271",
-    "name": "red_vuln-shellshock",
-    "logo": "https://i.imgur.com/waYl54r.png",
-    "note": "Point your browser to http://your-docker-machine-ip:8086 to access it.",
-    "image": "hmlio/vaas-cve-2014-6271",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "webserver"],
-    "ports": [
-      "8086:80/tcp"
-    ]    
-  },
-{   
-    "type": 1,
-    "title": "Vulnerable SambaCry",
-    "platform": "linux",
-    "description": "Vulnerable Samba Installation - CVE-2017-7494",
-    "name": "red_vuln-samba",
-    "logo": "https://media.ilsoftware.it/images/500x500/img_15843.jpg",
-    "note": "If you want to access, use the following credentials. User: sambacry Password: nosambanocry",
-    "image": "hmlio/vulnerables/cve-2017-7494",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "smb"],
-    "ports": [
-      "445:445/tcp",
-      "137-139:137-139/tcp",
-      "6699:6699/tcp"
-    ]    
-  },
-  {   
-    "type": 1,
-    "title": "OWASP Mutillidae II",
-    "platform": "linux",
-    "description": "Docker container for OWASP Mutillidae II Web Pen-Test Practice Application",
-    "name": "red_vuln-mutillidae",
-    "logo": "https://i.imgur.com/SFDsPDQ.jpg",
-    "note": "Point your browser to http://your-docker-machine-ip:8087 to access it.",
-    "image": "citizenstig/nowasp",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "smb"],
-    "ports": [
-      "8087:80/tcp",
-      "3306:3306/tcp"
-    ],
-    "env": [
-      {
-        "name": "MYSQL_PASS",
-        "label": "Database root password",
-        "description": "Password used by the MySQL root user.",
-        "default": "Chang3ME!",
-        "preset": false
-      }
-    ]
-  },
-  {   
-    "type": 1,
-    "title": "Network Utilities",
-    "platform": "linux",
-    "description": "A lightweight docker container with a set of networking tools<br>Use /bin/sh",
-    "interactive": true,
-    "name": "red_netutils",
-    "logo": "https://i.imgur.com/XXaSxlw.png",
-    "note": "This is designed to be an interactive debuigging container",
-    "image": "flungo/netutils",
-    "restart_policy": "unless-stopped",
-    "categories": ["utils", "privacy"]
-  },
-{
-    "type": 1,
-    "title": "SoftEtherVPN",
-    "name": "red_softethervpn",
-    "description": "A simple SoftEther VPN server",
-    "categories": ["vpn", "utils", "privacy"],
-    "platform": "linux",
-    "logo": "https://i.imgur.com/zzhyywo.jpg",
-    "image": "siomiz/softethervpn",
-    "privileged": true,
-    "ports": [
-      "500:500/udp",
-      "4500:4500/udp",
-      "1701:1701/tcp",
-      "1194:1194/udp",
-      "5555:5555/tcp"
-    ]
-},
-{
-    "type": 1,
-    "title": "Cowrie Honeypot",
-    "name": "red_cowrie",
-    "interactive": true,
-    "description": "SSH Honeypot that logs authentication attempts and interactions",
-    "categories": ["honeypot", "deception"],
-    "platform": "linux",
-    "logo": "https://i.imgur.com/GaYgbXo.png",
-    "image": "cowrie/cowrie",
-    "ports": [
-      "2222:2222/tcp"
-    ]
-},
-{
-    "type": 1,
-    "title": "Endlessh tarpit",
-    "name": "red_endlessh",
-    "description": "SSH tarpit that slowly sends an endless banner",
-    "categories": ["deception"],
-    "platform": "linux",
-    "logo": "https://i.imgur.com/lsGCqxD.png",
-    "image": "d3lta/endlessh-docker",
-    "ports": [
-      "2223:22/tcp"
-    ]
-},
-{
-    "type": 1,
-    "title": "Beagle",
-    "name": "red_beagle",
-    "description": "Incident response and digital forensics tool which transforms data sources and logs into graphs. Supported data sources include FireEye HX Triages, Windows EVTX files, SysMon logs and Raw Windows memory images.",
-    "note": "Point your browser to http://your-docker-machine-ip:8000 to access it.",
-    "categories": ["utils", "dfir", "osint"],
-    "platform": "linux",
-    "logo": "https://i.imgur.com/QDBYkY1.jpg",
-    "image": "yampelo/beagle",
-    "ports": [
-      "8000:8000/tcp"
-    ]
-},
   {
     "type": 1,
     "title": "Nginx",
