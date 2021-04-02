@@ -1,486 +1,34 @@
 [
   {
-    "type": 1,
+    "type": "container",
+    "title": "Registry",
+    "description": "Docker image registry",
+    "categories": ["docker"],
     "platform": "linux",
-    "network": "redcloud_default",
-    "title": "Metasploit - Nightly",
-    "description": "Official bare Metasploit Alpine build. Includes beta features from dev branch.",
-    "name": "red_msf-dev",
-    "interactive": true,
-    "logo": "https://yusufanilakduygu.files.wordpress.com/2016/08/capture1.jpg",
-    "image": "metasploitframework/metasploit-framework",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "bare"],
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/registry.png",
+    "image": "registry:latest",
     "ports": [
-      "4444:4444/tcp"
-      ]
-    },
-  {
-    "type": 1,
-    "platform": "linux",
-    "network": "redcloud_default",
-    "title": "Metasploit - Stable + Postgresql",
-    "description": "Debian Metasploit build with Postgres and additional helper scripts",
-    "name": "red_msf-postgresql",
-    "interactive": true,
-    "logo": "https://i.imgur.com/OE5fgz7.png",
-    "image": "phocean/msf",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "database", "stack"],
-    "labels": [
-    { "name": "traefik.frontend.rule", "value": "PathPrefixStrip:/msf" },
-    { "name": "traefik.port", "value": "4444" }
-      ],
-    "ports": [
-      "4444:4444/tcp"
-      ]
-  },
-  {  
-    "type": 1,
-    "title": "Empire",
-    "network": "redcloud_default",
-    "platform": "linux",
-    "description": "Pure Python & PowerShell post-exploitation",
-    "interactive": true,
-    "name": "red_empire",
-    "logo": "https://i.imgur.com/XvtOqFp.png",
-    "note": "Port 5555 opened for reverse callbacks",
-    "image": "empireproject/empire",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive"],
-    "ports": [
-      "5555:5555/tcp"      
-      ],
-    "labels": [
-    { "name": "traefik.frontend.rule", "value": "PathPrefixStrip:/empire" },
-    { "name": "traefik.port", "value": "5555" }
-      ]
-    
-  },
-  {
-    "type": 1,
-    "network": "redcloud_default",
-    "title": "Sn1per",
-    "platform": "linux",
-    "description": "Automated pentest framework for offensive security experts",
-    "name": "red_sn1per",
-    "interactive": true,
-    "logo": "https://i.imgur.com/X1fCmIv.jpg",
-    "image": "menzo/sn1per-docker",
-    "categories": ["offensive", "stack"],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "title": "Metasploithelper",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "MetasploitHelper is meant to assist penetration testers in network penetration tests. Comes with everything installed",
-    "name": "red_metasploithelper",
-    "interactive": true,
-    "logo": "https://i.imgur.com/2GIRvgI.png",
-    "image": "milo2012/metasploithelper",
-    "categories": ["offensive", "stack", "util"],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "title": "Pentest-tools",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "Ubuntu build with: searchsploit, sqlmap, nmap, nikto, dnsutils, sn1per, knock, sqliv, pasko, uniscan, wpscan, ncrack, wfuzz, sublist3r, massdns",
-    "name": "red_pentest-tools",
-    "interactive": true,
-    "logo": "https://i.imgur.com/oySfUtD.png",
-    "image": "szalek/pentest-tools",
-    "categories": ["offensive", "stack"],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "platform": "linux",
-    "network": "redcloud_default",
-    "title": "Kali - Bare",
-    "name": "red_kali-bare",
-    "description": "Official Kali container. Install desired metapackages",
-    "note": "Packages can be installed using Kali Metapackages. Use either docker attach <container name> by CLI (best) or the web terminal. Port 4444 is open by default for reverse callback payloads.",
-    "interactive": true,
-    "logo": "https://i.imgur.com/tmLEP0b.jpg",
-    "image": "kalilinux/kali-linux-docker",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "bare"],
-    "ports": [
-      "4444:4444/tcp"
-      ]
-  },
-  {
-    "type": 1,  
-    "platform": "linux",
-    "network": "redcloud_default",
-    "title": "Kali - Full",
-    "name": "red_kali-full",
-    "description": "Non-Official Kali container with kali-linux-full metapackage installed, built every night",
-    "interactive": true,
-    "logo": "https://i.imgur.com/kcOdowg.jpg",
-    "image": "booyaabes/kali-linux-full",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "stack"],
-    "ports": [
-      "4444:4444/tcp"
-      ]
-  },
-  {   
-    "type": 1,
-    "title": "Tor Socks Proxy",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "The smallest (15 MB) docker image with Tor and Privoxy on Alpine Linux",
-    "name": "red_tor-socks",
-    "logo": "https://i.imgur.com/p3dEUKr.jpg",
-    "note": "curl --proxy tor-socks:8118 icanhazip.com <br>curl --socks5 tor-socks:9050 icanhazip.com",
-    "image": "rdsubhas/tor-privoxy-alpine",
-    "restart_policy": "unless-stopped",
-    "categories": ["utils", "privacy"],
-    "ports": [
-      "8118:8118/tcp",
-      "9050:9050/tcp"
-    ]
-  },
-  {   
-    "type": 1,
-    "title": "Multi Tor Socks Proxy",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "A multi TOR (x10) + privoxy socks proxy instances load-balancer ",
-    "name": "red_multi-tor-socks",
-    "logo": "https://i.imgur.com/p3dEUKr.jpg",
-    "note": "curl --socks5 multi-tor-socks:9050 icanhazip.com",
-    "image": "rdsubhas/tor-privoxy-alpine",
-    "restart_policy": "unless-stopped",
-    "categories": ["utils", "privacy"],
-    "ports": [
-      "9050:9050/tcp"
-    ]
-  },
-  {  
-    "type": 1,
-    "title": "GoPhish",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "Open-Source Phishing Toolkit",
-    "name": "red_gophish",
-    "logo": "https://i.imgur.com/l21Rn2v.png",
-    "note": "In your browser, head over to https://your-docker-machine-ip:3333. Don't forget the S in https. Default credentials: admin/gophish",
-    "image": "matteoggl/gophish",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "phishing"],
-    "ports": [
-      "3333:3333/tcp",
-      "8083:80/tcp"
-      ]    
-  },
-  {  
-    "type": 1,
-    "title": "gscript",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "Framework to rapidly implement custom droppers for all three major operating systems",
-    "interactive": true,
-    "name": "red_gscript",
-    "logo": "https://i.imgur.com/IoI2VqG.png",
-    "note": "Run gscript binary from the interactive shell. Don't forget to mount appropriate volumes.",
-    "image": "gen0cide/gscript:v1",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "evasion"],
-    "volumes": [{"container": "/root/share"}]
-  },
-  {
-    "type": 1,
-    "title": "Spiderfoot",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "SpiderFoot automates OSINT to find out everything possible about your target.",
-    "name": "red_spiderfoot",
-    "note": "In your browser, head over to https://your-docker-machine-ip:5001",
-    "interactive": true,
-    "logo": "https://i.imgur.com/4lffWWS.png",
-    "image": "combro2k/alpine-spiderfoot",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "osint"],
-    "ports": [
-      "5001:5001/tcp"
-    ]
-  },
-  {
-    "type": 1,
-    "title": "ZAP Proxy WebSwing",
-    "network": "redcloud_default",
-    "platform": "linux",
-    "description": "Official in-browser version of ZAP.",
-    "name": "red_zap-proxy",
-    "note": "Since it is hosted on the same LAN as the target containers, usage should be faster. It is also possible to use the exposed remote proxy with a local instance of ZAP. Point your browser to http://your-docker-machine-ip:8081/?anonym=true&app=ZAP once done. If not, you will be asked to authenticate to a null account.",
-    "interactive": true,
-    "command": "zap-webswing.sh",
-    "logo": "https://www.owasp.org/images/1/11/Zap128x128.png",
-    "image": "owasp/zap2docker-stable",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "webserver", "bare"],
-    "ports": [
-      "8081:8080/tcp",
-      "8090:8090/tcp"
-    ]
-  },
-  {  
-    "type": 1,
-    "title": "Ubuntu Web VNC",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "Docker container images with VNC and http NoVNC",
-    "name": "red_ubuntu-vnc",
-    "logo": "https://i.imgur.com/KfWzNDU.jpg",
-    "note": "Connect to :1 display with vncviewer. NoVNC: http://your-docker-machine-ip:6901/vnc.html, default password: vncpassword",
-    "image": "consol/ubuntu-xfce-vnc",
-    "restart_policy": "unless-stopped",
-    "categories": ["utils"],
-    "ports": [
-      "5901:5901/tcp",
-      "6901:6901/tcp"
-      ]    
-  },
-  {  
-    "type": 1,
-    "title": "Kali Web noVNC + LXDE",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "Kali Docker container with minimal LXDE",
-    "name": "red_kali-vnc",
-    "logo": "https://i.imgur.com/tmLEP0b.jpg",
-    "note": "From your web browser: http://your-docker-machine-ip:6080",
-    "image": "jgamblin/kalibrowser-lxde",
-    "restart_policy": "unless-stopped",
-    "categories": ["offensive", "bare", "utils"],
-    "ports": [
-      "6080:6080/tcp"
-      ]    
-  },
-  {
-    "type": 1,
-    "network": "redcloud_default",
-    "title": "Lockdoor Framework",
-    "platform": "linux",
-    "description": "Lockdoor Framework : A Penetration Testing framework with Cyber Security Resources",
-    "name": "red_lockdoor",
-    "interactive": true,
-    "logo": "https://i.imgur.com/B5uKiEv.png",
-    "image": "sofianehamlaoui/lockdoor",
-    "categories": ["offensive", "privacy"],
-    "restart_policy": "unless-stopped"
-  },
-  {
-    "type": 1,
-    "title": "DVWA",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "Damn Vulnerable Web App (DVWA) is a PHP/MySQL web application that is damn vulnerable",
-    "name": "red_vuln-dvwa",
-    "logo": "https://linuxsecurityblog.files.wordpress.com/2016/01/dvwa.jpg",
-    "note": "Point your browser to http://your-docker-machine-ip:8082 to access it. To start using: Generate DB from the web interface, Login using admin/password. Select DVWA Security in the left menu, set your difficulty level.",
-    "image": "vulnerables/web-dvwa",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "webserver"],
-    "ports": [
-      "8082:80/tcp"
-    ]    
-  },
-  {   
-    "type": 1,
-    "title": "JuiceShop",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "OWASP Juice Shop is an intentionally insecure web application written entirely in JavaScript which encompasses the entire range of OWASP Top Ten and other severe security flaws.",
-    "name": "red_vuln-juiceshop",
-    "logo": "https://www.owasp.org/images/6/66/JuiceShop_Logo.png",
-    "note": "Point your browser to http://your-docker-machine-ip:8084 to access it.",
-    "image": "bkimminich/juice-shop",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "webserver"],
-    "ports": [
-      "8084:3000/tcp"
-    ]    
-  },
-  {   
-    "type": 1,
-    "title": "Vulnerable Wordpress",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "Vulnerable WordPress Installation",
-    "name": "red_vuln-wp",
-    "logo": "https://i.imgur.com/0DpXEE4.png",
-    "note": "Point your browser to http://your-docker-machine-ip:8085 to access it.",
-    "image": "wpscanteam/vulnerablewordpress",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "webserver"],
-    "ports": [
-      "8085:80/tcp",
-      "3306:3306/tcp"
-    ]    
-  },
-  {   
-    "type": 1,
-    "title": "Vulnerable Shellshock",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "Vulnerable Shellshock Installation - CVE-2014-6271",
-    "name": "red_vuln-shellshock",
-    "logo": "https://i.imgur.com/waYl54r.png",
-    "note": "Point your browser to http://your-docker-machine-ip:8086 to access it.",
-    "image": "hmlio/vaas-cve-2014-6271",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "webserver"],
-    "ports": [
-      "8086:80/tcp"
-    ]    
-  },
-{   
-    "type": 1,
-    "title": "Vulnerable SambaCry",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "Vulnerable Samba Installation - CVE-2017-7494",
-    "name": "red_vuln-samba",
-    "logo": "https://media.ilsoftware.it/images/500x500/img_15843.jpg",
-    "note": "If you want to access, use the following credentials. User: sambacry Password: nosambanocry",
-    "image": "hmlio/vulnerables/cve-2017-7494",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "smb"],
-    "ports": [
-      "445:445/tcp",
-      "137-139:137-139/tcp",
-      "6699:6699/tcp"
-    ]    
-  },
-  {   
-    "type": 1,
-    "title": "OWASP Mutillidae II",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "Docker container for OWASP Mutillidae II Web Pen-Test Practice Application",
-    "name": "red_vuln-mutillidae",
-    "logo": "https://i.imgur.com/SFDsPDQ.jpg",
-    "note": "Point your browser to http://your-docker-machine-ip:8087 to access it.",
-    "image": "citizenstig/nowasp",
-    "restart_policy": "unless-stopped",
-    "categories": ["vulnerable", "smb"],
-    "ports": [
-      "8087:80/tcp",
-      "3306:3306/tcp"
+      "5000/tcp"
     ],
-    "env": [
-      {
-        "name": "MYSQL_PASS",
-        "label": "Database root password",
-        "description": "Password used by the MySQL root user.",
-        "default": "Chang3ME!",
-        "preset": false
-      }
-    ]
+    "volumes": ["/var/lib/registry"]
   },
-  {   
-    "type": 1,
-    "title": "Network Utilities",
-    "platform": "linux",
-    "network": "redcloud_default",
-    "description": "A lightweight docker container with a set of networking tools<br>Use /bin/sh",
-    "interactive": true,
-    "name": "red_netutils",
-    "logo": "https://i.imgur.com/XXaSxlw.png",
-    "note": "This is designed to be an interactive debuigging container",
-    "image": "flungo/netutils",
-    "restart_policy": "unless-stopped",
-    "categories": ["utils", "privacy"]
-  },
-{
-    "type": 1,
-    "title": "SoftEtherVPN",
-    "name": "red_softethervpn",
-    "network": "redcloud_default",
-    "description": "A simple SoftEther VPN server",
-    "categories": ["vpn", "utils", "privacy"],
-    "platform": "linux",
-    "logo": "https://i.imgur.com/zzhyywo.jpg",
-    "image": "siomiz/softethervpn",
-    "privileged": true,
-    "ports": [
-      "500:500/udp",
-      "4500:4500/udp",
-      "1701:1701/tcp",
-      "1194:1194/udp",
-      "5555:5555/tcp"
-    ]
-},
-{
-    "type": 1,
-    "title": "Cowrie Honeypot",
-    "name": "red_cowrie",
-    "network": "redcloud_default",
-    "interactive": true,
-    "description": "SSH Honeypot that logs authentication attempts and interactions",
-    "categories": ["honeypot", "deception"],
-    "platform": "linux",
-    "logo": "https://i.imgur.com/GaYgbXo.png",
-    "image": "cowrie/cowrie",
-    "ports": [
-      "2222:2222/tcp"
-    ]
-},
-{
-    "type": 1,
-    "title": "Endlessh tarpit",
-    "name": "red_endlessh",
-    "network": "redcloud_default",
-    "description": "SSH tarpit that slowly sends an endless banner",
-    "categories": ["deception"],
-    "platform": "linux",
-    "logo": "https://i.imgur.com/lsGCqxD.png",
-    "image": "d3lta/endlessh-docker",
-    "ports": [
-      "2223:22/tcp"
-    ]
-},
-{
-    "type": 1,
-    "title": "Beagle",
-    "name": "red_beagle",
-    "network": "redcloud_default",
-    "description": "Incident response and digital forensics tool which transforms data sources and logs into graphs. Supported data sources include FireEye HX Triages, Windows EVTX files, SysMon logs and Raw Windows memory images.",
-    "note": "Point your browser to http://your-docker-machine-ip:8000 to access it.",
-    "categories": ["utils", "dfir", "osint"],
-    "platform": "linux",
-    "logo": "https://i.imgur.com/QDBYkY1.jpg",
-    "image": "yampelo/beagle",
-    "ports": [
-      "8000:8000/tcp"
-    ]
-},
   {
-    "type": 1,
+    "type": "container",
     "title": "Nginx",
     "description": "High performance web server",
     "categories": ["webserver"],
     "platform": "linux",
-    "network": "redcloud_default",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/nginx.png",
     "image": "nginx:latest",
     "ports": [
       "80/tcp",
       "443/tcp"
     ],
-    "volumes": [{"container": "/etc/nginx"}, {"container": "/usr/share/nginx/html"}]
+    "volumes": ["/etc/nginx", "/usr/share/nginx/html"]
   },
   {
-    "type": 1,
+    "type": "container",
     "title": "Httpd",
-    "network": "redcloud_default",
     "description": "Open-source HTTP server",
     "categories": ["webserver"],
     "platform": "linux",
@@ -489,12 +37,11 @@
     "ports": [
       "80/tcp"
     ],
-    "volumes": [{"container": "/usr/local/apache2/htdocs/"}]
+    "volumes": ["/usr/local/apache2/htdocs/"]
   },
   {
-    "type": 1,
+    "type": "container",
     "title": "Caddy",
-    "network": "redcloud_default",
     "description": "HTTP/2 web server with automatic HTTPS",
     "categories": ["webserver"],
     "platform": "linux",
@@ -503,12 +50,11 @@
     "ports": [
       "80/tcp", "443/tcp", "2015/tcp"
     ],
-    "volumes": [{"container": "/root/.caddy"}]
+    "volumes": ["/root/.caddy"]
   },
   {
-    "type": 1,
+    "type": "container",
     "title": "MySQL",
-    "network": "redcloud_default",
     "description": "The most popular open-source database",
     "categories": ["database"],
     "platform": "linux",
@@ -523,12 +69,30 @@
     "ports": [
       "3306/tcp"
     ],
-    "volumes": [{"container": "/var/lib/mysql"}]
+    "volumes": ["/var/lib/mysql"]
   },
   {
-    "type": 1,
+    "type": "container",
+    "title": "MariaDB",
+    "description": "Performance beyond MySQL",
+    "categories": ["database"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mariadb.png",
+    "image": "mariadb:latest",
+    "env": [
+      {
+        "name": "MYSQL_ROOT_PASSWORD",
+        "label": "Root password"
+      }
+    ],
+    "ports": [
+      "3306/tcp"
+    ],
+    "volumes": ["/var/lib/mysql"]
+  },
+  {
+    "type": "container",
     "title": "PostgreSQL",
-    "network": "redcloud_default",
     "description": "The most advanced open-source database",
     "categories": ["database"],
     "platform": "linux",
@@ -547,12 +111,53 @@
     "ports": [
       "5432/tcp"
     ],
-    "volumes": [{"container": "/var/lib/postgresql/data"}]
+    "volumes": ["/var/lib/postgresql/data"]
   },
   {
-    "type": 1,
+    "type": "container",
+    "title": "Mongo",
+    "description": "Open-source document-oriented database",
+    "categories": ["database"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mongo.png",
+    "image": "mongo:latest",
+    "ports": [
+      "27017/tcp"
+    ],
+    "volumes": ["/data/db"]
+  },
+  {
+    "type": "container",
+    "title": "CockroachDB",
+    "description": "An open-source, survivable, strongly consistent, scale-out SQL database",
+    "categories": ["database"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cockroachdb.png",
+    "image": "cockroachdb/cockroach:latest",
+    "ports": [
+      "26257/tcp",
+      "8080/tcp"
+    ],
+    "volumes": ["/cockroach/cockroach-data"],
+    "command": "start --insecure"
+  },
+  {
+    "type": "container",
+    "title": "CrateDB",
+    "description": "An open-source distributed SQL database",
+    "categories": ["database"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cratedb.png",
+    "image": "crate:latest",
+    "ports": [
+      "4200/tcp",
+      "4300/tcp"
+    ],
+    "volumes": ["/data"]
+  },
+  {
+    "type": "container",
     "title": "Elasticsearch",
-    "network": "redcloud_default",
     "description": "Open-source search and analytics engine",
     "categories": ["database"],
     "platform": "linux",
@@ -562,12 +167,11 @@
       "9200/tcp",
       "9300/tcp"
     ],
-    "volumes": [{"container": "/usr/share/elasticsearch/data"}]
+    "volumes": ["/usr/share/elasticsearch/data"]
   },
   {
-    "type": 1,
+    "type": "container",
     "title": "Gitlab CE",
-    "network": "redcloud_default",
     "description": "Open-source end-to-end software development platform",
     "note": "Default username is <b>root</b>. Check the <a href=\"https://docs.gitlab.com/omnibus/docker/README.html#after-starting-a-container\" target=\"_blank\">Gitlab documentation</a> to get started.",
     "categories": ["development", "project-management"],
@@ -586,11 +190,10 @@
     ]
   },
   {
-    "type": 1,
+    "type": "container",
     "title": "Minio",
-    "network": "redcloud_default",
     "description": "A distributed object storage server built for cloud applications and devops",
-    "categories": ["storage", "exfiltration"],
+    "categories": ["storage"],
     "platform": "linux",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/minio.png",
     "image": "minio/minio:latest",
@@ -607,29 +210,233 @@
         "label": "Minio secret key"
       }
     ],
-    "volumes": [{"container": "/data"}, {"container": "/root/.minio"}],
+    "volumes": ["/data", "/root/.minio"],
     "command": "server /data"
   },
   {
-    "type": 1,
+    "type": "container",
+    "title": "Scality S3",
+    "description": "Standalone AWS S3 protocol server",
+    "categories": ["storage"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/scality-s3.png",
+    "image": "scality/s3server",
+    "ports": [
+      "8000/tcp"
+    ],
+    "env": [
+      {
+        "name": "SCALITY_ACCESS_KEY",
+        "label": "Scality S3 access key"
+      },
+      {
+        "name": "SCALITY_SECRET_KEY",
+        "label": "Scality S3 secret key"
+      }
+    ],
+    "volumes": ["/usr/src/app/localData", "/usr/src/app/localMetadata"]
+  },
+  {
+    "type": "container",
+    "title": "SQL Server",
+    "description": "Microsoft SQL Server on Linux",
+    "categories": ["database"],
+    "platform": "linux",
+    "note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+    "image": "microsoft/mssql-server-linux:2017-GA",
+    "ports": [
+      "1433/tcp"
+    ],
+    "env": [
+      {
+        "name": "ACCEPT_EULA",
+        "set": "Y"
+      },
+      {
+        "name": "SA_PASSWORD",
+        "label": "SA password"
+      }
+    ]
+  },
+  {
+    "type": "container",
+    "title": "SQL Server",
+    "description": "Microsoft SQL Server Developer for Windows containers",
+    "categories": ["database"],
+    "platform": "windows",
+    "note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+    "image": "microsoft/mssql-server-windows-developer:latest",
+    "ports": [
+      "1433/tcp"
+    ],
+    "env": [
+      {
+        "name": "ACCEPT_EULA",
+        "set": "Y"
+      },
+      {
+        "name": "sa_password",
+        "label": "SA password"
+      }
+    ],
+    "volumes": ["C:/temp/"]
+  },
+  {
+    "type": "container",
+    "title": "SQL Server Express",
+    "description": "Microsoft SQL Server Express for Windows containers",
+    "categories": ["database"],
+    "platform": "windows",
+    "note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+    "image": "microsoft/mssql-server-windows-express:latest",
+    "ports": [
+      "1433/tcp"
+    ],
+    "env": [
+      {
+        "name": "ACCEPT_EULA",
+        "set": "Y"
+      },
+      {
+        "name": "sa_password",
+        "label": "SA password"
+      }
+    ],
+    "volumes": ["C:/temp/"]
+  },
+  {
+    "type": "container",
+    "title": "IronFunctions API",
+    "description": "Open-source serverless computing platform",
+    "categories": ["serverless"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
+    "image": "iron/functions:latest",
+    "ports": [
+      "8080/tcp"
+    ],
+    "volumes": ["/app/data"],
+    "privileged": true
+  },
+  {
+    "type": "container",
+    "title": "IronFunctions UI",
+    "description": "Open-source user interface for IronFunctions",
+    "categories": ["serverless"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
+    "image": "iron/functions-ui:latest",
+    "ports": [
+      "4000/tcp"
+    ],
+    "volumes": ["/app/data"],
+    "env": [
+      {
+        "name": "API_URL",
+        "label": "API URL"
+      }
+    ],
+    "privileged": true
+  },
+  {
+    "type": "container",
     "title": "Solr",
-    "network": "redcloud_default",
     "description": "Open-source enterprise search platform",
-    "categories": ["search-engine", "exfiltration"],
+    "categories": ["search-engine"],
     "platform": "linux",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/solr.png",
     "image": "solr:latest",
     "ports": [
       "8983/tcp"
     ],
-    "volumes": [{"container": "/opt/solr/mydata"}]
+    "volumes": ["/opt/solr/mydata"]
   },
   {
-    "type": 1,
+    "type": "container",
+    "title": "Redis",
+    "description": "Open-source in-memory data structure store",
+    "categories": ["database"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redis.png",
+    "image": "redis:latest",
+    "ports": [
+      "6379/tcp"
+    ],
+    "volumes": ["/data"]
+  },
+  {
+    "type": "container",
+    "title": "RabbitMQ",
+    "description": "Highly reliable enterprise messaging system",
+    "categories": ["messaging"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/rabbitmq.png",
+    "image": "rabbitmq:latest",
+    "ports": [
+      "5671/tcp",
+      "5672/tcp"
+    ],
+    "volumes": ["/var/lib/rabbitmq"]
+  },
+  {
+    "type": "container",
+    "title": "Ghost",
+    "description": "Free and open-source blogging platform",
+    "categories": ["blog"],
+    "note": "Access the blog management interface under <code>/ghost/</code>.",
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ghost.png",
+    "image": "ghost:latest",
+    "ports": [
+      "2368/tcp"
+    ],
+    "volumes": ["/var/lib/ghost/content"]
+  },
+  {
+    "type": "container",
+    "title": "Plesk",
+    "description": "WebOps platform and hosting control panel",
+    "categories": ["CMS"],
+    "platform": "linux",
+    "note": "Default credentials: admin / changeme",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/plesk.png",
+    "image": "plesk/plesk:preview",
+    "ports": [
+      "21/tcp", "80/tcp", "443/tcp", "8880/tcp", "8443/tcp", "8447/tcp"
+    ]
+  },
+  {
+    "type": "container",
+    "title": "WordPress",
+    "description": "A free and open-source CMS",
+    "categories": ["CMS"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+    "image": "wordpress:latest",
+    "env": [
+      {
+        "name": "WORDPRESS_DB_HOST",
+        "label": "MySQL database host",
+        "type": "container"
+      },
+      {
+        "name": "WORDPRESS_DB_PASSWORD",
+        "label": "Database password"
+      }
+    ],
+    "ports": [
+      "80/tcp"
+    ],
+    "volumes": ["/var/www/html"]
+  },
+  {
+    "type": "container",
     "title": "Joomla",
-    "network": "redcloud_default",
     "description": "Another free and open-source CMS",
-    "categories": ["phishing", "deception"],
+    "categories": ["CMS"],
     "platform": "linux",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/joomla.png",
     "image": "joomla:latest",
@@ -647,28 +454,165 @@
     "ports": [
       "80/tcp"
     ],
-    "volumes": [{"container": "/var/www/html"}]
+    "volumes": ["/var/www/html"]
   },
   {
-    "type": 1,
+    "type": "container",
     "title": "Drupal",
-    "network": "redcloud_default",
     "description": "Open-source content management framework",
-    "categories": ["phishing", "deception"],
+    "categories": ["CMS"],
     "platform": "linux",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/drupal.png",
     "image": "drupal:latest",
     "ports": [
       "80/tcp"
     ],
-    "volumes": [{"container": "/var/www/html"}]
+    "volumes": ["/var/www/html"]
   },
   {
-    "type": 1,
+    "type": "container",
+    "title": "Plone",
+    "description": "A free and open-source CMS built on top of Zope",
+    "categories": ["CMS"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/plone.png",
+    "image": "plone:latest",
+    "ports": [
+      "8080/tcp"
+    ],
+    "volumes": ["/data"]
+  },
+  {
+    "type": "container",
+    "title": "Magento 2",
+    "description": "Open-source e-commerce platform",
+    "categories": ["CMS"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/magento.png",
+    "image": "alankent/gsd:latest",
+    "ports": [
+      "80/tcp",
+      "3000/tcp",
+      "3001/tcp"
+    ],
+    "volumes": ["/var/www/html/"]
+  },
+  {
+    "type": "container",
+    "title": "Sematext Docker Agent",
+    "description": "Collect logs, metrics and docker events",
+    "categories": ["Log Management", "Monitoring"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/sematext_agent.png",
+    "image": "sematext/sematext-agent-docker:latest",
+    "name": "sematext-agent",
+    "privileged": true,
+    "env": [
+      {
+        "name": "LOGSENE_TOKEN",
+        "label": "Logs token"
+      },
+      {
+        "name": "SPM_TOKEN",
+        "label": "SPM monitoring token"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/var/run/docker.sock",
+        "bind": "/var/run/docker.sock"
+      }
+    ]
+  },
+  {
+    "type": "container",
+    "title": "Mautic",
+    "description": "Open-source marketing automation platform",
+    "categories": ["marketing"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mautic.png",
+    "image": "mautic/mautic:latest",
+    "env": [
+      {
+        "name": "MAUTIC_DB_HOST",
+        "label": "MySQL database host",
+        "type": "container"
+      },
+      {
+        "name": "MAUTIC_DB_PASSWORD",
+        "label": "Database password"
+      }
+    ],
+    "ports": [
+      "80/tcp"
+    ],
+    "volumes": ["/var/www/html"]
+  },
+  {
+    "type": "container",
+    "title": "Wowza",
+    "description": "Streaming media server",
+    "categories": ["streaming"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wowza.png",
+    "image": "sameersbn/wowza:4.1.2-8",
+    "env": [
+      {
+        "name": "WOWZA_ACCEPT_LICENSE",
+        "label": "Agree to Wowza EULA",
+        "set": "yes"
+      },
+      {
+        "name": "WOWZA_KEY",
+        "label": "License key"
+      }
+    ],
+    "ports": [
+      "1935/tcp",
+      "8086/tcp",
+      "8087/tcp",
+      "8088/tcp"
+    ],
+    "volumes": ["/var/lib/wowza"]
+  },
+  {
+    "type": "container",
+    "title": "Jenkins",
+    "description": "Open-source continuous integration tool",
+    "categories": ["continuous-integration"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/jenkins.png",
+    "image": "jenkins/jenkins:lts",
+    "ports": [
+      "8080/tcp",
+      "50000/tcp"
+    ],
+    "env": [
+      {
+        "name": "JENKINS_OPTS",
+        "label": "Jenkins options"
+      }
+    ],
+    "volumes": ["/var/jenkins_home"]
+  },
+  {
+    "type": "container",
+    "title": "Redmine",
+    "description": "Open-source project management tool",
+    "categories": ["project-management"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redmine.png",
+    "image": "redmine:latest",
+    "ports": [
+      "3000/tcp"
+    ],
+    "volumes": ["/usr/src/redmine/files"]
+  },
+  {
+    "type": "container",
     "title": "Odoo",
-    "network": "redcloud_default",
     "description": "Open-source business apps",
-    "categories": ["project-management", "phishing"],
+    "categories": ["project-management"],
     "platform": "linux",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/odoo.png",
     "image": "odoo:latest",
@@ -690,14 +634,13 @@
     "ports": [
       "8069/tcp"
     ],
-    "volumes": [{"container": "/var/lib/odoo"}, {"container": "/mnt/extra-addons"}]
+    "volumes": ["/var/lib/odoo", "/mnt/extra-addons"]
   },
   {
-    "type": 1,
+    "type": "container",
     "title": "Urbackup",
-    "network": "redcloud_default",
     "description": "Open-source network backup",
-    "categories": ["backup", "exfiltration"],
+    "categories": ["backup"],
     "platform": "linux",
     "note": "This application web interface is exposed on the port 55414 inside the container.",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/urbackup.png",
@@ -705,12 +648,71 @@
     "ports": [
       "55413/tcp", "55414/tcp", "55415/tcp", "35622/tcp"
     ],
-    "volumes": [{"container": "/var/urbackup"}]
+    "volumes": ["/var/urbackup"]
   },
   {
-    "type": 2,
+    "type": "container",
+    "title": "File browser",
+    "description": "A web file manager",
+    "note": "Default credentials: admin/admin",
+    "categories": ["filesystem", "storage"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/filebrowser.png",
+    "image": "hacdias/filemanager:latest",
+    "ports": [
+      "80/tcp"
+    ],
+    "volumes": ["/data", "/srv"],
+    "command": "--port 80 --database /data/database.db --scope /srv"
+  },
+  {
+    "type": "container",
+    "title": "CommandBox",
+    "description": "ColdFusion (CFML) CLI",
+    "categories": ["development"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ortussolutions-commandbox.png",
+    "image": "ortussolutions/commandbox:latest",
+    "env": [
+      {
+        "name": "CFENGINE",
+        "set": "lucee@4.5"
+      }
+    ],
+    "ports": [
+      "8080/tcp", "8443/tcp"
+    ]
+  },
+  {
+    "type": "container",
+    "title": "ContentBox",
+    "description": "Open-source modular CMS",
+    "categories": ["CMS"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ortussolutions-contentbox.png",
+    "image": "ortussolutions/contentbox:latest",
+    "env": [
+      {
+        "name": "express",
+        "set": "true"
+      },
+      {
+        "name": "install",
+        "set": "true"
+      },
+      {
+        "name": "CFENGINE",
+        "set": "lucee@4.5"
+      }
+    ],
+    "ports": [
+      "8080/tcp", "8443/tcp"
+    ],
+    "volumes": ["/data/contentbox/db", "/app/includes/shared/media"]
+  },
+  {
+    "type": "stack",
     "title": "Portainer Agent",
-    "network": "redcloud_default",
     "description": "Manage all the resources in your Swarm cluster",
     "note": "The agent will be deployed globally inside your cluster and available on port 9001.",
     "categories": ["portainer"],
@@ -722,26 +724,115 @@
     }
   },
   {
-    "type": 3,
+    "type": "stack",
+    "title": "OpenFaaS",
+    "name": "func",
+    "description": "Serverless functions made simple",
+    "note": "Deploys the API gateway and sample functions. You can access the UI on port 8080. <b>Warning</b>: the name of the stack must be 'func'.",
+    "categories": ["serverless"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/openfaas.png",
+    "repository": {
+      "url": "https://github.com/openfaas/faas",
+      "stackfile": "docker-compose.yml"
+    }
+  },
+  {
+    "type": "stack",
+    "title": "IronFunctions",
+    "description": "Open-source serverless computing platform",
+    "note": "Deploys the IronFunctions API and UI.",
+    "categories": ["serverless"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/ironfunctions.png",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/ironfunctions/docker-stack.yml"
+    }
+  },
+  {
+    "type": "stack",
+    "title": "CockroachDB",
+    "description": "CockroachDB cluster",
+    "note": "Deploys an insecure CockroachDB cluster, please refer to <a href=\"https://www.cockroachlabs.com/docs/stable/orchestrate-cockroachdb-with-docker-swarm.html\" target=\"_blank\">CockroachDB documentation</a> for production deployments.",
+    "categories": ["database"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/cockroachdb.png",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/cockroachdb/docker-stack.yml"
+    }
+  },
+  {
+    "type": "stack",
     "title": "Wordpress",
-    "network": "redcloud_default",
     "description": "Wordpress setup with a MySQL database",
     "note": "Deploys a Wordpress instance connected to a MySQL database.",
-    "categories": ["phishing", "deception"],
+    "categories": ["CMS"],
     "platform": "linux",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
     "repository": {
       "url": "https://github.com/portainer/templates",
-      "stackfile": "stacks/wordpress/docker-compose.yml"
+      "stackfile": "stacks/wordpress/docker-stack.yml"
     },
     "env": [
       {
-        "name": "MYSQL_DATABASE_PASSWORD",
+        "name": "MYSQL_ROOT_PASSWORD",
         "label": "Database root password",
         "description": "Password used by the MySQL root user."
       }
     ]
+  },
+  {
+    "type": "stack",
+    "title": "Microsoft OMS Agent",
+    "description": "Microsoft Operations Management Suite Linux agent.",
+    "categories": ["OPS"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/microsoft-oms/docker-stack.yml"
+    },
+    "env": [
+      {
+        "name": "AZURE_WORKSPACE_ID",
+        "label": "Workspace ID",
+        "description": "Azure Workspace ID"
+      },
+      {
+        "name": "AZURE_PRIMARY_KEY",
+        "label": "Primary key",
+        "description": "Azure primary key"
+      }
+    ]
+  },
+  {
+    "title": "Sematext Docker Agent",
+    "type": "stack",
+    "categories": ["Log Management", "Monitoring"],
+    "description": "Collect logs, metrics and docker events",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/sematext_agent.png",
+    "platform": "linux",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/sematext-agent-docker/docker-stack.yml"
+    },
+    "env": [
+      {
+        "name": "LOGSENE_TOKEN",
+        "label": "Logs token"
+      },
+      {
+        "name": "SPM_TOKEN",
+        "label": "SPM monitoring token"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/var/run/docker.sock",
+        "bind": "/var/run/docker.sock"
+      }
+    ]
   }
-
-
 ]
