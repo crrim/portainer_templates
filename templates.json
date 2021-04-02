@@ -62,7 +62,6 @@
     {
     "type": 1,
     "platform": "linux",
-    "network": "redcloud_default",
     "title": "Metasploit - Nightly",
     "description": "Official bare Metasploit Alpine build. Includes beta features from dev branch.",
     "name": "red_msf-dev",
