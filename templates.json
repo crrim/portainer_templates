@@ -395,7 +395,6 @@
     "type": 1,
     "title": "Beagle",
     "name": "red_beagle",
-    "network": "redcloud_default",
     "description": "Incident response and digital forensics tool which transforms data sources and logs into graphs. Supported data sources include FireEye HX Triages, Windows EVTX files, SysMon logs and Raw Windows memory images.",
     "note": "Point your browser to http://your-docker-machine-ip:8000 to access it.",
     "categories": ["utils", "dfir", "osint"],
